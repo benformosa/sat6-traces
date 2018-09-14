@@ -1,12 +1,22 @@
-#!/usr/bin/python
+#!/usr/bin/env python2
 
 """
-List all Satellite hosts with traces.
+List all Red Hat Satellite 6 hosts with services that need restarting
 """
 
-"""
-This program is heavily on https://github.com/RedHatSatellite/sat6-currency
-"""
+import argparse
+import csv
+import json
+import os
+import requests
+import sys
+import yaml
+
+__author__ = "Ture Karlsson, Ben Formosa"
+__credits__ = ("This program is based on "
+"https://github.com/RedHatSatellite/sat6-currency")
+__copyright__ = "Copyright 2018, Commonwealth of Australia"
+__license__ = "GPLv3"
 
 """
 This program is free software: you can redistribute it and/or modify
@@ -22,14 +32,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
-
-import argparse
-import csv
-import json
-import os
-import requests
-import sys
-import yaml
 
 
 def get_with_json(location, json_data):
@@ -60,7 +62,7 @@ def get_with_json(location, json_data):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description="List all Satellite hosts with traces")
+        description="List all hosts with services that need restarting")
     parser.add_argument(
         "-f", "--config",
         type=argparse.FileType(mode='r'),
